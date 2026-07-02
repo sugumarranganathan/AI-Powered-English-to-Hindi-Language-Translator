@@ -212,35 +212,6 @@ AI-Powered-English-to-Hindi-Language-Translator
 └── README.md
 ```
 
----
-
-# ▶️ Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/sugumarranganathan/AI-Powered-English-to-Hindi-Language-Translator.git
-```
-
-Go to the project folder
-
-```bash
-cd AI-Powered-English-to-Hindi-Language-Translator
-```
-
-Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application
-
-```bash
-python app.py
-```
-
----
 
 # 📸 Sample Input
 

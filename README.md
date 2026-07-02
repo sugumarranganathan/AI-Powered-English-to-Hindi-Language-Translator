@@ -2,7 +2,7 @@ https://colab.research.google.com/drive/1-zF8s6P0V4VtOoONxyRO4hpA4Wf0jQjF#scroll
 
 # 🇬🇧➡️🇮🇳 AI-Powered English to Hindi Language Translator
 
-# ❓ Why Build an AI-Powered English to Hindi Translator When Google Translate Already Exists?
+#  Why Build an AI-Powered English to Hindi Translator When Google Translate Already Exists?
 
 Google Translate is an excellent general-purpose translation service. However, many organizations need a translation system that works **inside their own applications** rather than asking users to open a separate website.
 

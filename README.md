@@ -18,12 +18,6 @@ This project demonstrates how a **Transformer-based AI Translator** can be integ
 | Users copy and paste text manually. | Translation is performed automatically within the application. |
 | Commercial translation service. | Demonstrates Transformer-based AI, NLP, and Deep Learning for custom AI solutions. |
 
-## Why This Project?
-
-This project is designed to demonstrate how modern **Transformer-Based Deep Learning** can be used to build a customized English-to-Hindi translation system that organizations can deploy in their own applications. It provides fast, context-aware translation while allowing developers to extend the system with additional AI features such as voice translation, document translation, OCR, and multilingual support.
-
-An AI-powered English to Hindi Language Translator built using **Transformer-Based Deep Learning**. This application uses the **Facebook NLLB-200 (No Language Left Behind)** pre-trained Transformer model to translate English sentences into natural and context-aware Hindi.
-
 🌐 **Live Demo:** https://sugumarai-ai-powered-english-to-hindi-language-t-c21a55d.hf.space
 
 # Project Overview

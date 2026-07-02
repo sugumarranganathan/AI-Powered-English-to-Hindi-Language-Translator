@@ -26,7 +26,7 @@ An AI-powered English to Hindi Language Translator built using **Transformer-Bas
 
 🌐 **Live Demo:** https://sugumarai-ai-powered-english-to-hindi-language-t-c21a55d.hf.space
 
-# 📌 Project Overview
+# Project Overview
 
 Language barriers make it difficult for many users to understand English content. This project provides an AI-powered solution that translates English text into Hindi quickly and accurately using a state-of-the-art Transformer model.
 
@@ -34,7 +34,7 @@ Unlike traditional word-by-word translation, the Transformer architecture unders
 
 ---
 
-# ❗ Problem Statement
+# Problem Statement
 
 Millions of users are comfortable reading Hindi but often receive information in English. This creates communication challenges in areas such as healthcare, education, government services, banking, tourism, and e-commerce.
 

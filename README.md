@@ -229,20 +229,6 @@ Hindi
 आज मैं अपने दोस्त से मिला। वह मेरा स्कूल का सहपाठी था।
 ```
 
----
-
-# 📈 Future Enhancements
-
-- Voice Translation
-- Speech-to-Text
-- OCR Image Translation
-- PDF Document Translation
-- Multi-language Translation
-- Offline Translation
-- Mobile Application
-
----
-
 # 👨‍💻 Developed By
 
 **R. Sugumar, M.B.A.,**

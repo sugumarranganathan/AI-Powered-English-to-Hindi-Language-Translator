@@ -2,18 +2,23 @@ import gradio as gr
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-# -----------------------------
+# ----------------------------------------------------
 # Load Facebook NLLB Model
-# -----------------------------
+# ----------------------------------------------------
+
 MODEL_NAME = "facebook/nllb-200-distilled-600M"
+
+print("Loading AI Model...")
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
 
+print("Model Loaded Successfully!")
 
-# -----------------------------
+# ----------------------------------------------------
 # Translation Function
-# -----------------------------
+# ----------------------------------------------------
+
 def translate(text):
 
     if text.strip() == "":
@@ -24,120 +29,132 @@ def translate(text):
     inputs = tokenizer(text, return_tensors="pt")
 
     with torch.no_grad():
-        generated_tokens = model.generate(
+
+        translated_tokens = model.generate(
             **inputs,
             forced_bos_token_id=tokenizer.convert_tokens_to_ids("hin_Deva"),
             max_length=128
         )
 
     hindi = tokenizer.batch_decode(
-        generated_tokens,
+        translated_tokens,
         skip_special_tokens=True
     )[0]
 
     return hindi
 
 
-# -----------------------------
+# ----------------------------------------------------
+# Clear Function
+# ----------------------------------------------------
+
+def clear():
+    return "", ""
+
+
+# ----------------------------------------------------
 # Custom CSS
-# -----------------------------
+# ----------------------------------------------------
+
 css = """
+body{
+    background:#ECE5DD;
+}
 
 .gradio-container{
-background:#ece5dd;
+    max-width:900px !important;
+    margin:auto;
 }
 
-.header{
-background:#075E54;
-color:white;
-padding:18px;
-border-radius:10px;
-font-size:24px;
-font-weight:bold;
-text-align:center;
-margin-bottom:10px;
+h1{
+    text-align:center;
+    color:#075E54;
+    font-size:34px;
 }
 
-.footer{
-text-align:center;
-padding:10px;
-font-size:15px;
-color:gray;
+textarea{
+    font-size:18px !important;
+}
+
+footer{
+    visibility:hidden;
 }
 
 """
 
-# -----------------------------
-# UI
-# -----------------------------
 
-with gr.Blocks(css=css,title="AI-Powered English to Hindi Language Translator") as demo:
+# ----------------------------------------------------
+# Interface
+# ----------------------------------------------------
 
-    gr.HTML("""
-    <div class="header">
-        🇬🇧 ➜ 🇮🇳 AI-Powered English to Hindi Language Translator
-    </div>
-    """)
+with gr.Blocks(theme=gr.themes.Soft()) as demo:
 
-    chatbot = gr.Chatbot(
-        height=500,
-        label="Translator Chat",
-        bubble_full_width=False
-    )
+    gr.Markdown(
+        """
+# 🇬🇧 ➜ 🇮🇳 AI-Powered English to Hindi Language Translator
 
-    msg = gr.Textbox(
-        placeholder="Type English sentence here...",
-        show_label=False
+### Translate English sentences into Hindi using Transformer
+"""
     )
 
     with gr.Row():
 
-        send = gr.Button("📤 Translate",variant="primary")
+        english = gr.Textbox(
+            label="English Text",
+            lines=8,
+            placeholder="Enter English sentence..."
+        )
 
-        clear = gr.Button("🗑 Clear")
+        hindi = gr.Textbox(
+            label="Hindi Translation",
+            lines=8
+        )
 
-    examples = gr.Examples(
+    with gr.Row():
+
+        translate_btn = gr.Button(
+            "Translate",
+            variant="primary"
+        )
+
+        clear_btn = gr.Button("🗑 Clear")
+
+    gr.Examples(
         examples=[
             ["Hello"],
             ["Good Morning"],
-            ["I love India"],
             ["How are you?"],
             ["Where are you going?"],
-            ["Artificial Intelligence is amazing."],
-            ["Today is a beautiful day."]
+            ["I love India."],
+            ["Artificial Intelligence is changing the world."],
+            ["Today is a beautiful day."],
+            ["Thank you very much."]
         ],
-        inputs=msg
+        inputs=english
     )
 
-    def respond(message, history):
-
-        answer = translate(message)
-
-        history.append((message, answer))
-
-        return "", history
-
-    send.click(
-        respond,
-        [msg, chatbot],
-        [msg, chatbot]
+    translate_btn.click(
+        translate,
+        inputs=english,
+        outputs=hindi
     )
 
-    msg.submit(
-        respond,
-        [msg, chatbot],
-        [msg, chatbot]
+    english.submit(
+        translate,
+        inputs=english,
+        outputs=hindi
     )
 
-    clear.click(
-        lambda: [],
-        outputs=chatbot
+    clear_btn.click(
+        clear,
+        outputs=[english, hindi]
     )
 
-    gr.HTML("""
-    <div class="footer">
-    Powered by Facebook NLLB Transformer | Hugging Face | Gradio
-    </div>
-    """)
+    gr.Markdown(
+        """
+---
+###  Powered by Sugumarai
+"""
+    )
 
 demo.launch()
